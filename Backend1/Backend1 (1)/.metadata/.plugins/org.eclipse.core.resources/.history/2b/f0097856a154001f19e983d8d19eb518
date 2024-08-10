@@ -1,0 +1,10 @@
+package com.sunbeam.dto;
+
+public class ItemDto {
+	
+    private String itemName;
+
+	private Integer orderQuantity;
+
+  
+}

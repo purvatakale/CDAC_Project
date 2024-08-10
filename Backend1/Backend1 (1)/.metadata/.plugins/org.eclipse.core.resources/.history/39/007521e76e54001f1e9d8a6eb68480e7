@@ -1,0 +1,60 @@
+package com.sunbeam.service;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sunbeam.custom_exception.ResourceNotFoundException;
+import com.sunbeam.dao.CategoryDao;
+import com.sunbeam.dto.ApiResponse;
+import com.sunbeam.entities.Category;
+
+@Service
+@Transactional
+public class CategoryServiceImpl implements CategoryService{
+
+	@Autowired
+	private CategoryDao categoryDao;
+
+	@Override
+	public ApiResponse addCategory(Category category) {
+		categoryDao.save(category);
+		return new ApiResponse("New Category Added !!");
+	}
+	
+	@Override
+	public List<Category> getAllCategories() {
+		// TODO Auto-generated method stub
+		return categoryDao.findAll();
+	}
+	
+	@Override
+	public Category getCategoryDetails(Long categoryId) {
+		// TODO Auto-generated method stub
+		return categoryDao.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Category Id !!!!"));
+	}
+	
+	@Override
+	public String updateCategoryDetails(Long categoryId, Category category) {
+		// validate if category exists !
+		if (categoryDao.existsById(categoryId)) {
+			// => exists
+			Category persistentCategory = categoryDao.save(category);
+			return "Category updated.....";
+		}
+		throw new ResourceNotFoundException("Invalid Category ID !!!!!!!!");
+	}
+	
+	@Override
+	public String deleteCategoryDetails(Long categoryId) {
+		if (categoryDao.existsById(categoryId)) {
+			categoryDao.deleteById(categoryId);
+			return "deleted category !!!";
+		}
+		throw new ResourceNotFoundException("Invalid category id !!!");
+	}
+}

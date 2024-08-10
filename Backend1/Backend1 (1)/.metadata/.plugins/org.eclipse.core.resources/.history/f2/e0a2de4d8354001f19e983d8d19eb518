@@ -1,0 +1,12 @@
+package com.sunbeam.service;
+
+import java.util.List;
+
+import com.sunbeam.entities.Cart;
+
+public interface CartService {
+
+	List<Cart> getAllCarts();
+	
+	
+}

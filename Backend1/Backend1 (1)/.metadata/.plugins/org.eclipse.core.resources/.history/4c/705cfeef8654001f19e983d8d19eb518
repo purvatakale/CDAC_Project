@@ -1,0 +1,11 @@
+package com.sunbeam.dto;
+
+public class CartDto {
+	
+	private int OrderId;
+	
+    private String itemName;
+
+    private Integer itemQuantity;
+
+}

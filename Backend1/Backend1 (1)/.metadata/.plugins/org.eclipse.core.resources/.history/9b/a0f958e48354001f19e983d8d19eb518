@@ -1,0 +1,52 @@
+package com.sunbeam.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sunbeam.entities.Cart;
+import com.sunbeam.service.CartService;
+
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+	
+	@Autowired
+	private CartService cartService;
+	
+	 @GetMapping
+	    public ResponseEntity<List<Cart>> getAllItems() {
+	        return new ResponseEntity<>(cartService.getAllItems(), HttpStatus.OK);
+	    }
+
+	    @GetMapping("/{id}")
+	    public ResponseEntity<CartItem> getItemById(@PathVariable Long id) {
+	        Optional<CartItem> item = cartService.getItemById(id);
+	        return item.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    }
+
+	    @PostMapping
+	    public ResponseEntity<CartItem> addItem(@RequestBody CartItem cartItem) {
+	        return new ResponseEntity<>(cartService.addItem(cartItem), HttpStatus.CREATED);
+	    }
+
+	    
+
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+	    	cartService.deleteItem(id);
+	        return ResponseEntity.noContent().build();
+	    }
+	    
+	    @PutMapping("/{id}")
+	    public ResponseEntity<CartItem> updateItem(@PathVariable Long id, @RequestBody CartItem cartItem) {
+	        CartItem updatedItem = cartService.updateItem(id, cartItem);
+	        return updatedItem != null ? ResponseEntity.ok(updatedItem) : ResponseEntity.notFound().build();
+	    }
+	
+
+}

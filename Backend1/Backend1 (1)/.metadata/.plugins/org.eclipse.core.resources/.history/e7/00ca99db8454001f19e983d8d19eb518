@@ -1,0 +1,19 @@
+package com.sunbeam.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.sunbeam.entities.Cart;
+
+public interface CartService {
+
+	List<Cart> getAllCarts();
+	
+	Optional<Cart> getCartById(Long id);
+	
+	Cart saveCart(Cart cart);
+	
+	void deleteCart(Long id);
+	
+	Cart updateItem(Long id, Cart cartItem);
+}

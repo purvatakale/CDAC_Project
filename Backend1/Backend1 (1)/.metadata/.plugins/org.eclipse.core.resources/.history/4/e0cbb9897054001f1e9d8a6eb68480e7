@@ -1,0 +1,8 @@
+package com.sunbeam.dto;
+
+public class CategoryResDto {
+	
+	private String categoryName;
+
+
+}

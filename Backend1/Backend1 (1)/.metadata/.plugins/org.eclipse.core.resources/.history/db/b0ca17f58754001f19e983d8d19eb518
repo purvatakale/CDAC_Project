@@ -1,0 +1,43 @@
+package com.sunbeam.dto;
+
+public class CartDto {
+	
+	private int orderId;
+	
+    private String itemName;
+
+    private Integer itemQuantity;
+
+	public CartDto(int orderId, String itemName, Integer itemQuantity) {
+		super();
+		this.OrderId = orderId;
+		this.itemName = itemName;
+		this.itemQuantity = itemQuantity;
+	}
+
+	public int getOrderId() {
+		return OrderId;
+	}
+
+	public void setOrderId(int orderId) {
+		OrderId = orderId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public Integer getItemQuantity() {
+		return itemQuantity;
+	}
+
+	public void setItemQuantity(Integer itemQuantity) {
+		this.itemQuantity = itemQuantity;
+	}
+
+    
+}

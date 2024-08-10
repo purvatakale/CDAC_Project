@@ -1,0 +1,23 @@
+package com.sunbeam.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.sunbeam.dto.ApiResponse;
+import com.sunbeam.dto.CartDto;
+import com.sunbeam.entities.Cart;
+
+public interface CartService {
+
+	List<Cart> getAllCarts();
+	
+	Optional<Cart> getCartById(Long id);
+	
+	//Cart saveCart(CartDto cart);
+	
+	ApiResponse addItemToCart(Long orderId, String itemName, int itemQuantity);
+	
+	void deleteCart(Long id);
+	
+	//Cart updateItem(Long id, Cart cartItem);
+}
